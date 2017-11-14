@@ -330,15 +330,6 @@
          BUILD
      -->
     <build>
-        <extensions>
-            <!-- maven3 will need wagon-ssh extension in order to be able to release,
-            Using external variant in order to retain keys, etc -->
-            <extension>
-                <groupId>org.apache.maven.wagon</groupId>
-                <artifactId>wagon-ssh-external</artifactId>
-                <version>2.5</version>
-            </extension>
-        </extensions>
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -359,13 +350,6 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-release-plugin</artifactId>
                     <version>2.5</version>
-                    <dependencies>
-                        <dependency>
-                            <groupId>org.apache.maven.scm</groupId>
-                            <artifactId>maven-scm-provider-gitexe</artifactId>
-                            <version>1.9</version>
-                        </dependency>
-                    </dependencies>
                 </plugin>
                 <plugin>
                     <artifactId>maven-resources-plugin</artifactId>
@@ -397,25 +381,24 @@
         <module>semimeter-web</module>
     </modules>
 
-	<scm>
-		<connection>scm:git:ssh://git@github.com/amedia/semimeter.git</connection>
-		<developerConnection>scm:git:ssh://git@github.com/amedia/semimeter.git</developerConnection>
-	  <tag>HEAD</tag>
-  </scm>
+    <scm>
+        <connection>scm:git:ssh://git@github.com/amedia/semimeter.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/amedia/semimeter.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
 
     <distributionManagement>
         <repository>
-            <id>api-repository</id>
-            <name>API Repository</name>
-            <url>scpexe://maven.api.no/usr/local/maven/repository</url>
+            <id>amedia-releases</id>
+            <name>Amedia Release Repository</name>
+            <url>http://nexus.dev.api.no/repository/amedia-releases/</url>
         </repository>
 
         <snapshotRepository>
-          <id>snapshots</id>
-          <name>nexus Snapshot Repository</name>
-          <url>http://ci.dev.api.no/nexus/content/repositories/snapshots</url>
+            <id>amedia-snapshots</id>
+            <name>nexus Snapshot Repository</name>
+            <url>http://nexus.dev.api.no/repository/amedia-snapshots/</url>
         </snapshotRepository>
-
     </distributionManagement>
 
 </project>
